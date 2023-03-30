@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="alimama.example.housedemo.mapper.HouseInfoMapper">
+    <resultMap id="baseMap" type="alimama.example.housedemo.entity.HouseInfo">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="price" jdbcType="DOUBLE" property="price"/>
+        <result column="square" jdbcType="VARCHAR" property="square"/>
+        <result column="layout" jdbcType="VARCHAR" property="layout"/>
+        <result column="price_type" jdbcType="VARCHAR" property="pricetype"/>
+        <result column="address1" jdbcType="VARCHAR" property="city"/>
+        <result column="address2" jdbcType="VARCHAR" property="town"/>
+        <result column="address3" jdbcType="VARCHAR" property="detail"/>
+        <result column="selling_status" jdbcType="VARCHAR" property="sellingstatus"/>
+        <result column="house_type" jdbcType="VARCHAR" property="housetype"/>
+        <result column="tag" jdbcType="VARCHAR" property="tags"/>
+    </resultMap>
+    <select id="findAll" resultMap="baseMap">
+        select * from houseinfo;
+    </select>
+</mapper>

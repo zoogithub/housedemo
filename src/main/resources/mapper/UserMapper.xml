@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="alimama.example.housedemo.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="alimama.example.housedemo.entity.User">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+    </resultMap>
+    <select id="findByUsername" resultType="alimama.example.housedemo.entity.User">
+        select * from user where username=#{username}
+    </select>
+    <insert id="createUser">
+        insert into user(username,password) values (#{username},#{password})
+    </insert>
+    <delete id="deleteByUsernameAndPwd">
+        delete from user where username=#{username} and password=#{password}
+    </delete>
+    <update id="update">
+        update user set password=#{password} on username=#{username}
+    </update>
+    <select id="findByUsernameAndPwd" resultType="alimama.example.housedemo.entity.User">
+        select * from user where username=#{username} and password=#{password}
+    </select>
+</mapper>

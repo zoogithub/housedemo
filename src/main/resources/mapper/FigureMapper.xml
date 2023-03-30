@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="alimama.example.housedemo.mapper.FigureMapper">
+    <resultMap id="baseMap" type="alimama.example.housedemo.entity.HouseInfo">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="price" jdbcType="DOUBLE" property="price"/>
+        <result column="square" jdbcType="VARCHAR" property="square"/>
+        <result column="layout" jdbcType="VARCHAR" property="layout"/>
+        <result column="price_type" jdbcType="VARCHAR" property="pricetype"/>
+        <result column="address1" jdbcType="VARCHAR" property="city"/>
+        <result column="address2" jdbcType="VARCHAR" property="town"/>
+        <result column="address3" jdbcType="VARCHAR" property="detail"/>
+        <result column="selling_status" jdbcType="VARCHAR" property="sellingstatus"/>
+        <result column="house_type" jdbcType="VARCHAR" property="housetype"/>
+        <result column="tag" jdbcType="VARCHAR" property="tags"/>
+    </resultMap>
+    <select id="selectByLayout" resultType="Map">
+        select lname as layout ,avg(value) as price from layout,price,structure where price.hid=structure.hid
+        and structure.lid=layout.id and value>0 and pricetype like("%均价%") group by(lname) order by structure.lid asc;
+    </select>
+    <select id="selectByCity" resultType="java.util.Map">
+        select city,avg(value) as price from price,house where price.hid=house.id
+        and value>0 and pricetype like("%均价%") group by city;
+    </select>
+    <select id="selectByHouseType" resultType="java.util.Map">
+        select housetype,avg(value) as price from price,
+        house where price.hid=house.id and value>0 and pricetype like("%均价%") group by housetype;
+    </select>
+    <select id="selectBySellingStatus" resultType="java.util.Map">
+        select sellingstatus,avg(value) as price from price,house where price.hid=house.id and value>0
+        and pricetype like("%均价%") group by sellingstatus;
+    </select>
+    <select id="countHuxing" resultType="java.util.Map">
+        select count(*) as count ,lname as huxing
+        from layout,structure where structure.lid=layout.id group by layout.id;
+    </select>
+    <select id="countHouseType" resultType="java.util.Map">
+        select housetype, count(*) as number from house group by housetype;
+    </select>
+    <select id="countStatus" resultType="java.util.Map">
+        select sellingstatus as status, count(*) as number from house group by sellingstatus;
+    </select>
+    <select id="countArea" resultType="java.util.Map">
+        select city as area, count(*) as number from house group by city;
+    </select>
+    <select id="selectByTag" resultType="java.util.Map">
+
+    </select>
+    <select id="countTags" resultType="java.util.Map">
+        select tag,count(*) as number from tags group by tag;
+    </select>
+</mapper>

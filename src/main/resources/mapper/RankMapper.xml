@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="alimama.example.housedemo.mapper.RankMapper">
+    <resultMap id="baseMap" type="alimama.example.housedemo.entity.HouseInfo">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="price" jdbcType="DOUBLE" property="price"/>
+        <result column="square" jdbcType="VARCHAR" property="square"/>
+        <result column="layout" jdbcType="VARCHAR" property="layout"/>
+        <result column="price_type" jdbcType="VARCHAR" property="pricetype"/>
+        <result column="address1" jdbcType="VARCHAR" property="city"/>
+        <result column="address2" jdbcType="VARCHAR" property="town"/>
+        <result column="address3" jdbcType="VARCHAR" property="detail"/>
+        <result column="selling_status" jdbcType="VARCHAR" property="sellingstatus"/>
+        <result column="house_type" jdbcType="VARCHAR" property="housetype"/>
+        <result column="tag" jdbcType="VARCHAR" property="tags"/>
+    </resultMap>
+    <select id="selectTop100" resultMap="baseMap">
+        select *from houseinfo order by price desc limit 0,100
+    </select>
+    <select id="selectCheap100" resultMap="baseMap">
+        select *from houseinfo where price>0 and price_type="均价" order by price asc limit 0,100
+    </select>
+    <select id="selectTianheTop10" resultMap="baseMap">
+        select * from houseinfo where address1="天河" and selling_status="在售" order by price desc limit 10
+    </select>
+    <select id="selectBaiyunTop10" resultMap="baseMap">
+        select * from houseinfo where address1="白云" and selling_status="在售" order by price desc limit 10;
+    </select>
+    <select id="selectHuaduTop10" resultMap="baseMap">
+        select * from houseinfo where address1="花都" and selling_status="在售" order by price desc limit 10
+    </select>
+    <select id="selectYuexiuTop10" resultMap="baseMap">
+        select * from houseinfo where address1="越秀" and selling_status="在售" order by price desc limit 10
+    </select>
+    <select id="selectLiwanTop10" resultMap="baseMap">
+        select * from houseinfo where address1="荔湾" and selling_status="在售" order by price desc limit 10
+    </select>
+    <select id="selectHaizhuTop10" resultMap="baseMap">
+        select * from houseinfo where address1="海珠" and selling_status="在售" order by price desc limit 10
+    </select>
+
+    <select id="selectTianheCheap10" resultMap="baseMap">
+        select * from houseinfo where address1="天河" and selling_status="在售" and price>0 and price_type="均价" order by
+        price asc limit 10
+    </select>
+    <select id="selectBaiyunCheap10" resultMap="baseMap">
+        select * from houseinfo where address1="白云" and selling_status="在售" and price>0 and price_type="均价" order by
+        price asc limit 10
+    </select>
+    <select id="selectHuaduCheap10" resultMap="baseMap">
+        select * from houseinfo where address1="花都" and selling_status="在售" and price>0 and price_type="均价" order by
+        price asc limit 10
+    </select>
+    <select id="selectYuexiuCheap10" resultMap="baseMap">
+        select * from houseinfo where address1="越秀" and selling_status="在售" and price>0 and price_type="均价" order by
+        price asc limit 10
+    </select>
+    <select id="selectLiwanCheap10" resultMap="baseMap">
+        select * from houseinfo where address1="荔湾" and selling_status="在售" and price>0 and price_type="均价" order by
+        price asc limit 10
+    </select>
+    <select id="selectHaizhuCheap10" resultMap="baseMap">
+        select * from houseinfo where address1="海珠" and selling_status="在售" and price>0 and price_type="均价" order by
+        price asc limit 10
+    </select>
+</mapper>

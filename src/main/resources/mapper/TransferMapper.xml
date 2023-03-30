@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="alimama.example.housedemo.mapper.TransferMapper">
+    <insert id="insertHouse">
+        insert into house values (#{id},#{name},#{square},#{city},#{town},
+        #{detail},#{sellingstatus},#{housetype})
+    </insert>
+    <insert id="insertPrice">
+        insert into price values(#{id},#{pricetype},#{value})
+    </insert>
+    <insert id="insertStructure">
+        insert into structure values(#{hid},#{lid})
+    </insert>
+    <insert id="insertTag">
+        insert into tags values(#{hid},#{tag})
+    </insert>
+</mapper>
